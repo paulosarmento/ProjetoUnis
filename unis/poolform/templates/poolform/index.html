@@ -1,0 +1,38 @@
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'poolform:index' %}" method='POST'>
+    {% csrf_token %}
+    <label for="nome">Nome do Paciente: </label>
+    <input type="text" id="nome" lenght="150">
+    <br>
+
+    <label for="endereco">Endereco Completo: </label>
+    <input type="text" id="endereco" lenght="150">
+    <br>
+    <label for="altura">Altura: </label>
+    <input type="text" id="altura">
+    <br>
+
+    <label for="peso">Peso: </label>
+    <input type="text" id="peso">
+    <br>
+
+    <label for="imc">IMC: </label>
+    <input type="text" id=imc>
+    <br>
+
+    <input type="submit" value="Calcular">
+    <input type="button" value="Reiniciar">
+    
+</form>
+
+
+{% if list_pessoas %}
+    <ul>
+    {% for pessoa in list_pessoas %}
+        <li>Nome: {{pessoa.nome}} IMC: {{pessoa.imc}} <li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
